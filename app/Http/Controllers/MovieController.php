@@ -10,7 +10,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::all();
+        $movies = Movie::with('genres')->get();
 
         if (count($movies) > 0) {
             return response()->json([
@@ -52,6 +52,16 @@ class MovieController extends Controller
                 'data'      => null
             ], 400);
         }
+    }
+
+    public function create_genre(Request $request) {
+        $movie = Movie::find($request->movie_id);
+        $movie->genres()->attach($request->genre_id);
+
+        return response()->json([
+            'message'   => 'Create Genre Success',
+            'data'      => $movie
+        ], 200);
     }
 
     public function update(Request $request)

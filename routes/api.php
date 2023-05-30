@@ -32,6 +32,7 @@ Route::post('/login', LoginController::class)->name('login');
 // Movies
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::post('/movies/create', [MovieController::class, 'create'])->name('movies.create');
+Route::post('/movies/create/genre', [MovieController::class, 'create_genre'])->name('movies.create.genre');
 Route::put('/movies/edit/{id}', [MovieController::class, 'update'])->name('movies.edit');
 Route::delete('/movies/delete/{id}', [MovieController::class, 'delete'])->name('movies.delete');
 
