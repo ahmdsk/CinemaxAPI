@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->integer('ticket_price');
-            $table->string('ticket_time');
+            $table->dateTime('ticket_time')->default(now());
             $table->boolean('ticket_status')->default(0);
             $table->bigInteger('movie_id')->unsigned()->nullable();
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade')->onUpdate('cascade');

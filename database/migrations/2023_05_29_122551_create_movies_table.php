@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('movie_name');
             $table->string('movie_duration');
+            $table->integer('movie_price');
             $table->boolean('movie_status')->default(0);
             $table->date('release_date')->nullable();
             $table->string('movie_img')->nullable();

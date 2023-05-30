@@ -12,13 +12,37 @@ class BookingMovieController extends Controller
         $booking = BookingMovie::with('movie', 'seats')->get();
 
         if(count($booking) > 0) {
+            $data_booking = $booking->map(function($item) {
+                $item->total_payment = $item->seats->count() * $item->movie['movie_price'];
+    
+                return $item;
+            });
+
             return response([
                 'message' => 'Retrieve All Booking Success',
-                'data' => $booking
+                'data' => $data_booking
             ], 200);
         } else {
             return response([
                 'message' => 'No Booking Found',
+                'data' => null
+            ], 404);
+        }
+    }
+
+    public function show($id) {
+        $booking = BookingMovie::with('movie', 'seats')->find($id);
+
+        if(!is_null($booking)) {
+            $booking->total_payment = $booking->seats->count() * $booking->movie['movie_price'];
+
+            return response([
+                'message' => 'Retrieve Booking Success',
+                'data' => $booking
+            ], 200);
+        } else {
+            return response([
+                'message' => 'Booking Not Found',
                 'data' => null
             ], 404);
         }

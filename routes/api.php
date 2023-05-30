@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingMovieController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TicketsController;
 use Illuminate\Http\Request;
@@ -67,4 +68,8 @@ Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets.index
 
 // Booking
 Route::get('/booking', [BookingMovieController::class, 'index'])->name('booking.index');
+Route::get('/booking/show/{id}', [BookingMovieController::class, 'show'])->name('booking.show');
 Route::post('/booking/create', [BookingMovieController::class, 'create'])->name('booking.create');
+
+// Checkout
+Route::post('/checkout/{id}', PaymentController::class)->name('checkout');

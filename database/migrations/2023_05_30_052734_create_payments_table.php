@@ -17,9 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('booking_id')->unsigned();
             $table->foreign('booking_id')->references('id')->on('booking_movies')->onDelete('cascade')->onUpdate('cascade');
-            $table->boolean('status')->default(0);
             $table->string('payment_method');
-            $table->string('total_payment');
+            $table->integer('total_payment');
             $table->timestamps();
         });
     }

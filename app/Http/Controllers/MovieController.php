@@ -27,17 +27,28 @@ class MovieController extends Controller
 
     public function create(Request $request)
     {
-        $movie = $request->only('movie_name', 'movie_duration', 'movie_status', 'release_date', 'movie_img', 'description');
+        $movie = $request->only('movie_name', 'movie_duration', 'movie_price', 'movie_status', 'release_date', 'movie_img', 'description');
 
         $validator = Validator::make($movie, [
             'movie_name'        => 'required',
             'movie_duration'    => 'required',
-            'movie_status'      => 'required'
+            'movie_status'      => 'required',
+            'movie_price'       => 'required',
+            'movie_img'         => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         //if validation fails
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
+        }
+
+        // if image exists
+        if ($request->hasFile('movie_img')) {
+            $file = $request->file('movie_img');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/movie/', $filename);
+            $movie['movie_img'] = $filename;
         }
 
         $create_movie = Movie::create($movie);
@@ -66,17 +77,28 @@ class MovieController extends Controller
 
     public function update(Request $request)
     {
-        $movie = $request->only('movie_name', 'movie_duration', 'movie_status', 'release_date', 'movie_img', 'description');
+        $movie = $request->only('movie_name', 'movie_duration', 'movie_price', 'movie_status', 'release_date', 'movie_img', 'description');
 
         $validator = Validator::make($movie, [
             'movie_name'        => 'required',
             'movie_duration'    => 'required',
-            'movie_status'      => 'required'
+            'movie_status'      => 'required',
+            'movie_price'       => 'required',
+            'movie_img'         => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         //if validation fails
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
+        }
+
+        // if image exists
+        if ($request->hasFile('movie_img')) {
+            $file = $request->file('movie_img');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/movie/', $filename);
+            $movie['movie_img'] = $filename;
         }
 
         $update_movie = Movie::where('id', $request->id)->update($movie);
