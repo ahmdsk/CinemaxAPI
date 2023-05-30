@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\EventController;
@@ -36,11 +37,17 @@ Route::post('/movies/create/genre', [MovieController::class, 'create_genre'])->n
 Route::put('/movies/edit/{id}', [MovieController::class, 'update'])->name('movies.edit');
 Route::delete('/movies/delete/{id}', [MovieController::class, 'delete'])->name('movies.delete');
 
-// Seat
+// Genre
 Route::get('/genre', [GenreController::class, 'index'])->name('genre.index');
 Route::post('/genre/create', [GenreController::class, 'create'])->name('genre.create');
 Route::put('/genre/edit/{id}', [GenreController::class, 'update'])->name('genre.edit');
 Route::delete('/genre/delete/{id}', [GenreController::class, 'delete'])->name('genre.delete');
+
+// Actor
+Route::get('/actor', [ActorController::class, 'index'])->name('actor.index');
+Route::post('/actor/create', [ActorController::class, 'create'])->name('actor.create');
+Route::post('/actor/edit/{id}', [ActorController::class, 'update'])->name('actor.edit');
+Route::delete('/actor/delete/{id}', [ActorController::class, 'delete'])->name('actor.delete');
 
 // Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');

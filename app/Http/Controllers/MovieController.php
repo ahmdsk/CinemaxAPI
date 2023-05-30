@@ -10,7 +10,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        $movies = Movie::with('genres')->get();
+        $movies = Movie::with('genres', 'actors')->get();
 
         if (count($movies) > 0) {
             return response()->json([
