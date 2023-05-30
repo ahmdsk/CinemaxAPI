@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MovieGenre;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Validator;
 
-class MovieGenreController extends Controller
+class GenreController extends Controller
 {
     public function index()
     {
-        $movie_genre = MovieGenre::all();
+        $movie_genre = Genre::all();
 
         if (count($movie_genre) > 0) {
             return response()->json([
@@ -39,7 +39,7 @@ class MovieGenreController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $create_seat = MovieGenre::create($movie_genre);
+        $create_seat = Genre::create($movie_genre);
         if ($create_seat) {
             return response()->json([
                 'message'   => 'Create Movie Genre Success',
@@ -66,7 +66,7 @@ class MovieGenreController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $update_genre = MovieGenre::where('id', $id)->update($movie_genre);
+        $update_genre = Genre::where('id', $id)->update($movie_genre);
         if ($update_genre) {
             return response()->json([
                 'message'   => 'Update Genre Success',
@@ -81,7 +81,7 @@ class MovieGenreController extends Controller
     }
 
     public function delete($id) {
-        $genre = MovieGenre::find($id);
+        $genre = Genre::find($id);
 
         if ($genre) {
             $genre->delete();
