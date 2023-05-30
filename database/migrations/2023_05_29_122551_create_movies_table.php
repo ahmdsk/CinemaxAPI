@@ -17,13 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('movie_name');
             $table->string('movie_duration');
-            $table->bigInteger('movie_genre')->nullable()->unsigned();
             $table->boolean('movie_status')->default(0);
             $table->date('release_date')->nullable();
             $table->string('movie_img')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
-            
-            $table->foreign('movie_genre')->references('id')->on('movie_genres')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
