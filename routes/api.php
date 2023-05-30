@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MovieGenreController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TicketsController;
 use Illuminate\Http\Request;
@@ -33,6 +34,12 @@ Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::post('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 Route::put('/movies/edit/{id}', [MovieController::class, 'update'])->name('movies.edit');
 Route::delete('/movies/delete/{id}', [MovieController::class, 'delete'])->name('movies.delete');
+
+// Seat
+Route::get('/genre', [MovieGenreController::class, 'index'])->name('genre.index');
+Route::post('/genre/create', [MovieGenreController::class, 'create'])->name('genre.create');
+Route::put('/genre/edit/{id}', [MovieGenreController::class, 'update'])->name('genre.edit');
+Route::delete('/genre/delete/{id}', [MovieGenreController::class, 'delete'])->name('genre.delete');
 
 // Events
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
