@@ -27,11 +27,10 @@ class GenreController extends Controller
 
     public function create(Request $request)
     {
-        $movie_genre = $request->only('movie_genre_name', 'movie_id');
+        $movie_genre = $request->only('genre_name');
 
         $validator = Validator::make($movie_genre, [
-            'movie_genre_name'    => 'required',
-            'movie_id'            => 'required',
+            'genre_name'    => 'required',
         ]);
 
         //if validation fails
@@ -55,10 +54,10 @@ class GenreController extends Controller
 
     public function update(Request $request, $id)
     {
-        $movie_genre = $request->only('movie_genre_name', 'movie_id');
+        $movie_genre = $request->only('genre_name');
 
         $validator = Validator::make($movie_genre, [
-            'movie_genre_name'    => 'required',
+            'genre_name'    => 'required',
         ]);
 
         //if validation fails
