@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\BookingMovieController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
@@ -63,3 +64,7 @@ Route::delete('/seats/delete/{id}', [SeatController::class, 'delete'])->name('se
 
 // Tickets
 Route::get('/tickets', [TicketsController::class, 'index'])->name('tickets.index');
+
+// Booking
+Route::get('/booking', [BookingMovieController::class, 'index'])->name('booking.index');
+Route::post('/booking/create', [BookingMovieController::class, 'create'])->name('booking.create');
